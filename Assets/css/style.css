@@ -89,6 +89,10 @@ body {
     cursor: crosshair;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 /* OPENING SCREEN EXPERIMENTAL */
 
 .opening {
@@ -205,6 +209,7 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    position: relative;
 }
 
 .hero-title {
@@ -215,6 +220,38 @@ body {
 
 .hero-subtitle {
     opacity: 0.6;
+}
+
+.scroll-indicator {
+    position: absolute;
+    bottom: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    opacity: 0.6;
+    text-decoration: none;   /* hapus underline */
+    color: white;            /* paksa putih */
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.scroll-indicator span {
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.scroll-line {
+    width: 1px;
+    height: 40px;
+    background: white;
+    animation: scrollPulse 1.5s infinite ease-in-out;
+}
+
+@keyframes scrollPulse {
+    0% { height: 20px; opacity: 0.3; }
+    50% { height: 40px; opacity: 1; }
+    100% { height: 20px; opacity: 0.3; }
 }
 
 /* MANIFESTO */

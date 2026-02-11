@@ -90,3 +90,13 @@ gsap.utils.toArray(".scene-text").forEach((text, i) => {
         }
     });
 });
+// SCROLL INDICATOR FADE OUT
+gsap.to(".scroll-indicator", {
+    opacity: 0,
+    scrollTrigger: {
+        trigger: ".hero",
+        start: "top top",
+        end: "bottom top",
+        scrub: true
+    }
+});
