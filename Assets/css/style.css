@@ -121,6 +121,7 @@ body {
     font-family: 'Space Grotesk', sans-serif;
     font-size: 10vw;
     letter-spacing: 12px;
+    text-align: center;
     text-shadow: 0 0 20px var(--accent-glow);
 }
 
@@ -209,6 +210,7 @@ body {
 .hero-title {
     font-family: 'Space Grotesk', sans-serif;
     font-size: 9vw;
+    text-align: center;
 }
 
 .hero-subtitle {
