@@ -99,6 +99,7 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    text-align: center; /* penting */
     align-items: center;
     overflow: hidden;
     z-index: 999;
@@ -526,4 +527,16 @@ body {
     max-width: 1200px;
     font-size: 0.9rem;
     opacity: 0.4;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    .hero-title {
+        font-size: 14vw; /* lebih proporsional di HP */
+        letter-spacing: 4px;
+    }
+
+    .hero-subtitle {
+        font-size: 1rem;
+    }
 }
