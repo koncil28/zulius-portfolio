@@ -100,3 +100,10 @@ gsap.to(".scroll-indicator", {
         scrub: true
     }
 });
+
+document.querySelector(".scroll-indicator").addEventListener("click", function(e) {
+    e.preventDefault();
+    document.querySelector("#manifesto").scrollIntoView({
+        behavior: "smooth"
+    });
+});

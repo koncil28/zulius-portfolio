@@ -7,6 +7,7 @@
 
 body {
     background: var(--bg);
+    overflow-x: hidden;
 }
 
 * {
@@ -196,6 +197,46 @@ html {
     transform: scale(1.05);
 }
 
+.btn-stroke {
+    position: relative;
+    display: inline-block;
+    padding: 12px 28px;
+    border: 1px solid white;
+    color: white;
+    text-decoration: none;
+    overflow: hidden;
+    transition: color 0.4s ease;
+    margin: 0 10px;
+}
+
+.btn-stroke::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 100%;
+    background: white;
+    z-index: -1;
+    transition: width 0.5s cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+.btn-stroke:hover::before {
+    width: 100%;
+}
+
+.btn-stroke:hover {
+    color: black;
+}
+
+.btn-stroke:hover::before {
+    width: 100%;
+}
+
+.btn-stroke:hover {
+    color: black;
+}
+
 /* HIDE MAIN CONTENT AT FIRST */
 .main-content {
     opacity: 0;
@@ -329,7 +370,7 @@ html {
 .marquee-wrapper {
     position: relative;
     overflow: hidden;
-    background: black;
+    background: white;
     padding: 40px 0;
     margin-bottom: 100px;
 }
@@ -351,7 +392,7 @@ html {
     font-size: 1.8vw;
     white-space: nowrap;
     margin-right: 80px;
-    color: rgb(255, 255, 255);
+    color: black;
     letter-spacing: 1px;
 }
 
@@ -376,12 +417,12 @@ html {
 
 .marquee-wrapper::before {
     left: 0;
-    background: linear-gradient(to right, black, transparent);
+    background: linear-gradient(to right, white, transparent);
 }
 
 .marquee-wrapper::after {
     right: 0;
-    background: linear-gradient(to left, black, transparent);
+    background: linear-gradient(to left, white, transparent);
 }
 
 @keyframes marquee {
@@ -549,6 +590,78 @@ html {
 .contact-links a:hover {
     border-color: var(--accent);
     color: var(--accent);
+}
+
+.contact-actions {
+    margin-top: 50px;
+}
+
+.contact-links-secondary {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+}
+
+.contact-links-secondary a {
+    text-decoration: none;
+    color: rgba(255,255,255,0.6);
+    font-size: 0.9rem;
+    transition: 0.3s ease;
+}
+
+.contact-links-secondary a:hover {
+    color: white;
+}
+
+.btn-outline {
+    position: relative;
+    display: inline-block;
+    padding: 14px 36px;
+    border: 1px solid white;
+    color: white;
+    text-decoration: none;
+    letter-spacing: 1px;
+    overflow: hidden;
+    transition: color 0.4s ease, transform 0.3s ease;
+    z-index: 1;
+    border-radius: 8px;
+}
+
+.btn-outline span {
+    position: relative;
+    z-index: 2;
+}
+
+.btn-outline.small {
+    padding: 12px 28px;
+    font-size: 0.9rem;
+}
+
+.btn-outline::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 100%;
+    background: white;
+    z-index: 0; /* penting */
+    transition: width 0.5s cubic-bezier(0.77, 0, 0.175, 1);
+    border-radius: 8px;
+}
+
+.btn-outline:hover::before {
+    width: 100%;
+}
+
+.btn-outline:hover {
+    color: black !important; /* pakai ini kalau ada override */
+    transform: translateY(-3px);
+}
+
+.closing-actions {
+    margin-top: 60px;
 }
 
 /* FOOTER */
