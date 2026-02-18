@@ -107,3 +107,43 @@ document.querySelector(".scroll-indicator").addEventListener("click", function(e
         behavior: "smooth"
     });
 });
+
+// WORK ITEMS ANIMATION
+gsap.registerPlugin(ScrollTrigger);
+
+gsap.utils.toArray(".work-item").forEach((item) => {
+
+    gsap.fromTo(
+        item,
+        { opacity: 0, y: 100 },
+        {
+            opacity: 1,
+            y: 0,
+            ease: "none",
+            scrollTrigger: {
+                trigger: item,
+                start: "top 80%",
+                end: "top 30%",
+                scrub: true
+            }
+        }
+    );
+
+});
+
+gsap.utils.toArray(".work-image img").forEach((img) => {
+    gsap.fromTo(
+        img,
+        { scale: 1.2 },
+        {
+            scale: 1,
+            ease: "none",
+            scrollTrigger: {
+                trigger: img,
+                start: "top 90%",
+                end: "top 40%",
+                scrub: true
+            }
+        }
+    );
+});
