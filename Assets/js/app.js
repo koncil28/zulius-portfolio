@@ -11,6 +11,26 @@ enterBtn.addEventListener("click", () => {
         mainContent.style.opacity = "1";
     }, 1000);
 });
+//OPENING ANIMATION
+const openingLines = document.querySelectorAll(".opening-line");
+
+openingLines.forEach((line, i) => {
+    setTimeout(() => {
+        line.style.opacity = "1";
+        line.style.transform = "translateY(0)";
+        line.style.transition = "0.8s ease";
+    }, i * 900);
+});
+
+setTimeout(() => {
+    opening.style.opacity = "0";
+
+    setTimeout(() => {
+        opening.style.display = "none";
+        mainContent.style.opacity = "1";
+    }, 800);
+
+}, 3500);
 
 // Reveal Animation
 const reveals = document.querySelectorAll(".reveal");
