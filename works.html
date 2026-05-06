@@ -1,53 +1,429 @@
+<!-- =========================================
+     WORKS.HTML — FULL PREMIUM ARCHIVE PAGE
+========================================= -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Works — Zulius</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Works — Zulius Aditia</title>
 
-    <link rel="stylesheet" href="Assets/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg: #0b0b0f;
+            --accent: #3b82f6;
+            --accent-glow: rgba(59,130,246,0.5);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: var(--bg);
+            color: white;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            width: 700px;
+            height: 700px;
+            background: radial-gradient(circle, var(--accent-glow), transparent 70%);
+            top: -200px;
+            right: -200px;
+            z-index: -1;
+            filter: blur(120px);
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .works-container {
+            width: min(1200px, 92%);
+            margin: 0 auto;
+        }
+
+        /* HEADER */
+        .works-header {
+            padding: 160px 0 80px;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+        }
+
+        .works-header .work-link {
+            display: inline-block;
+            margin-bottom: 28px;
+            opacity: 0.55;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            transition: 0.3s ease;
+        }
+
+        .works-header .work-link:hover {
+            opacity: 1;
+            transform: translateX(-4px);
+        }
+
+        .works-page-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(56px, 9vw, 140px);
+            line-height: 0.95;
+            margin-bottom: 18px;
+        }
+
+        .works-page-sub {
+            max-width: 720px;
+            opacity: 0.65;
+            line-height: 1.7;
+            font-size: 1.05rem;
+        }
+
+        .works-meta {
+            margin-top: 18px;
+            opacity: 0.45;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+        }
+
+        /* ARCHIVE */
+        .full-archive {
+            padding: 20px 0 120px;
+        }
+
+        .archive-year {
+            margin-top: 90px;
+            margin-bottom: 24px;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+            padding-bottom: 12px;
+        }
+
+        .archive-year:first-child {
+            margin-top: 40px;
+        }
+
+        .archive-year h3 {
+            font-size: clamp(20px, 2vw, 28px);
+            font-family: 'Space Grotesk', sans-serif;
+            color: var(--accent);
+            letter-spacing: 1px;
+        }
+
+        .work-row {
+            display: grid;
+            grid-template-columns: 70px minmax(0, 1fr) auto;
+            align-items: center;
+            gap: 24px;
+            padding: 30px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+            transition: all 0.35s ease;
+            position: relative;
+        }
+
+        .work-row::before {
+            content: "";
+            position: absolute;
+            left: -24px;
+            top: 0;
+            width: calc(100% + 48px);
+            height: 100%;
+            background: rgba(255,255,255,0.015);
+            opacity: 0;
+            transition: 0.35s ease;
+        }
+
+        .work-row::after {
+            content: "";
+            position: absolute;
+            left: -24px;
+            top: 0;
+            width: 2px;
+            height: 100%;
+            background: var(--accent);
+            opacity: 0;
+            transition: 0.35s ease;
+        }
+
+        .work-row:hover::before,
+        .work-row:hover::after {
+            opacity: 1;
+        }
+
+        .work-row:hover {
+            transform: translateX(10px);
+            border-color: rgba(59,130,246,0.35);
+        }
+
+        .work-row:hover h2 {
+            color: var(--accent);
+        }
+
+        .work-index {
+            font-size: 0.9rem;
+            opacity: 0.28;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .work-main h2 {
+            font-size: clamp(24px, 2.5vw, 38px);
+            margin-bottom: 8px;
+            line-height: 1.15;
+            transition: color 0.35s ease;
+        }
+
+        .work-main p {
+            opacity: 0.65;
+            line-height: 1.6;
+            max-width: 720px;
+            font-size: 0.98rem;
+        }
+
+        .work-tag {
+            font-size: 0.85rem;
+            opacity: 0.45;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            white-space: nowrap;
+        }
+
+        .coming-soon {
+            opacity: 0.45;
+        }
+
+        .coming-soon:hover {
+            transform: none;
+        }
+
+        /* CTA */
+        .archive-cta {
+            padding: 120px 0;
+            text-align: center;
+            border-top: 1px solid rgba(255,255,255,0.06);
+        }
+
+        .archive-cta h2 {
+            font-size: clamp(32px, 5vw, 72px);
+            margin-bottom: 20px;
+        }
+
+        .archive-cta p {
+            opacity: 0.65;
+            margin-bottom: 40px;
+        }
+
+        .btn-outline {
+            display: inline-block;
+            padding: 14px 36px;
+            border: 1px solid white;
+            border-radius: 8px;
+            transition: 0.3s ease;
+        }
+
+        .btn-outline:hover {
+            background: white;
+            color: black;
+        }
+
+        /* FOOTER */
+        .footer {
+            padding: 40px 0;
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .footer-container {
+            width: min(1200px, 92%);
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            opacity: 0.4;
+            font-size: 0.9rem;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 992px) {
+            .work-row {
+                grid-template-columns: 50px minmax(0,1fr);
+            }
+
+            .work-tag {
+                grid-column: 2;
+                margin-top: 6px;
+                white-space: normal;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .works-header {
+                padding: 120px 0 60px;
+            }
+
+            .full-archive {
+                padding: 10px 0 90px;
+            }
+
+            .work-row {
+                grid-template-columns: 1fr;
+                gap: 8px;
+                padding: 24px 0;
+            }
+
+            .work-index {
+                display: none;
+            }
+
+            .work-row:hover {
+                transform: none;
+            }
+
+            .footer-container {
+                flex-direction: column;
+                gap: 10px;
+                text-align: center;
+            }
+        }
+    </style>
 </head>
 <body>
 
-<!-- HEADER -->
-<section class="works-header">
+<header class="works-header">
     <div class="works-container">
-        <h1 class="works-page-title">Selected Works</h1>
+
+        <a href="index.html" class="work-link">← Back to Home</a>
+
+        <h1 class="works-page-title">All Works</h1>
+
         <p class="works-page-sub">
-            A collection of strategic thinking, digital systems, and creative execution.
+            A complete archive of campaigns, visual systems, social execution, branding, web development, and creative experiments across industries.
         </p>
-    </div>
-</section>
 
-<!-- LIST -->
-<section class="works-list">
+        <p class="works-meta">
+            12+ Projects • Strategy • Design • Systems
+        </p>
+
+    </div>
+</header>
+
+
+<main class="works-list full-archive">
     <div class="works-container">
 
-        <a href="works/campaign-alpha.html" class="work-row">
+        <div class="archive-year"><h3>2026</h3></div>
+
+        <a href="works/kompas-lazada-webinar.html" class="work-row">
             <span class="work-index">01</span>
-            <h2>Campaign Alpha</h2>
-            <span class="work-tag">Brand Strategy</span>
+            <div class="work-main">
+                <h2>Kompas TV x Lazada Webinar Key Visual</h2>
+                <p>Broadcast-led educational campaign visual system.</p>
+            </div>
+            <span class="work-tag">Campaign / Key Visual</span>
         </a>
 
-        <a href="works/interactive-beta.html" class="work-row">
+        <a href="works/kompasxlazada1212.html" class="work-row">
             <span class="work-index">02</span>
-            <h2>Interactive Web Beta</h2>
-            <span class="work-tag">Interactive Design</span>
+            <div class="work-main">
+                <h2>Kompas x Lazada 12.12 Campaign</h2>
+                <p>Promotional digital storytelling for sponsored conversion.</p>
+            </div>
+            <span class="work-tag">Advertising / Social</span>
         </a>
 
-        <a href="works/design-system.html" class="work-row">
+        <a href="works/kompas-tv-rehat.html" class="work-row">
             <span class="work-index">03</span>
-            <h2>Design System</h2>
-            <span class="work-tag">UX / System</span>
+            <div class="work-main">
+                <h2>Kompas TV Rehat Interactive Social Campaign</h2>
+                <p>Retro-inspired creative system for audience engagement.</p>
+            </div>
+            <span class="work-tag">Interactive / Campaign</span>
+        </a>
+
+        <a href="works/inboks-social-campaign.html" class="work-row">
+            <span class="work-index">04</span>
+            <div class="work-main">
+                <h2>Inboks.id Social Media Campaign</h2>
+                <p>Strategic social communication and digital content execution.</p>
+            </div>
+            <span class="work-tag">Brand / Social Media</span>
+        </a>
+
+        <div class="archive-year"><h3>2025</h3></div>
+
+        <a href="javascript:void(0)" class="work-row coming-soon">
+            <span class="work-index">05</span>
+            <div class="work-main">
+                <h2>WEDFLIX Wedding Invitation System</h2>
+                <p>Interactive invitation platform with RSVP + live engagement system.</p>
+            </div>
+            <span class="work-tag">Web / UX System</span>
+        </a>
+
+        <a href="javascript:void(0)" class="work-row coming-soon">
+            <span class="work-index">06</span>
+            <div class="work-main">
+                <h2>Rumah Pintar Admin Dashboard</h2>
+                <p>Operational system integrating WhatsApp dashboard and automation.</p>
+            </div>
+            <span class="work-tag">System / Dashboard</span>
         </a>
 
     </div>
+</main>
+
+
+<section class="archive-cta">
+    <div class="works-container">
+        <h2>Let’s Build Something That Matters.</h2>
+        <p>Open for collaboration, freelance projects, and creative systems.</p>
+
+        <a href="mailto:zuliusaditia@gmail.com" class="btn-outline">
+            Start a Conversation
+        </a>
+    </div>
 </section>
 
-<!-- BACK -->
-<section class="works-back">
-    <a href="index.html">← Back to Home</a>
-</section>
+
+<footer class="footer">
+    <div class="footer-container">
+        <p>© 2026 Zulius. All rights reserved.</p>
+        <p>Built with intention.</p>
+    </div>
+</footer>
+
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+
+    const rows = document.querySelectorAll(".work-row");
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = "1";
+                entry.target.style.transform = "translateY(0)";
+            }
+        });
+    }, { threshold: 0.08 });
+
+    rows.forEach(row => {
+        row.style.opacity = "0";
+        row.style.transform = "translateY(30px)";
+        row.style.transition = "opacity 0.7s ease, transform 0.7s ease";
+        observer.observe(row);
+    });
+
+});
+</script>
 
 </body>
 </html>
